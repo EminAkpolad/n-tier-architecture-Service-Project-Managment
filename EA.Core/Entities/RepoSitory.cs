@@ -3,7 +3,7 @@ using EA.Core.Commons.Enums;
 
 namespace EA.Core.Entities;
 
-public class RepoSitory : BaseEntity
+public class Repository : BaseEntity
 {
     public required string Name{get;set;}
     public string? Description{get;set;}

@@ -7,5 +7,5 @@ public class Commit : BaseEntity
 {
     public required string Message{get; set;}
     public int RepoSitoryId{get; set;}
-    public RepoSitory? RepoSitory{get; set;}=null;
+    public Repository? Repository{get; set;}=null;
 }

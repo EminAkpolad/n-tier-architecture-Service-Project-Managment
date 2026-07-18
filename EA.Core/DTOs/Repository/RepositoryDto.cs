@@ -1,4 +1,4 @@
-public class RepositoryDto
+public record RepositoryDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

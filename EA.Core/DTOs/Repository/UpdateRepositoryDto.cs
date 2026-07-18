@@ -1,4 +1,4 @@
-public class UpdateRepositoryDto
+public record UpdateRepositoryDto
 {
     public string Name { get; set; } = string.Empty;
 

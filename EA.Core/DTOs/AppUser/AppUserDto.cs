@@ -1,4 +1,4 @@
-public class AppUserDto
+public record AppUserDto
 {
     public int Id{get;set;}
     public string FirstName{get;set;}

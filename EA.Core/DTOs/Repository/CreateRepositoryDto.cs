@@ -1,4 +1,4 @@
-public class CreateRepositoryDto
+public record CreateRepositoryDto
 {
     public string Name { get; set; }
 

@@ -13,6 +13,6 @@ public class AppUser : BaseEntity
     public string PassWord{get; set;}=string.Empty;
     public string? RefreshToken {get; set;}
     public DateTime? RefreshTokenEndDate {get; set;}
-    public required ICollection<Repository> Repositories{get; set;}=new List<Repository>();
+    public ICollection<Repository> Repositories{get; set;}=new List<Repository>();
     public virtual ICollection<UserClaim> UserClaims { get; set; }=new List<UserClaim>();
 }

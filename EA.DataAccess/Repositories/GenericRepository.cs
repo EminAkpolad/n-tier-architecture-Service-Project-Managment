@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using EA.Core.Commons;
 using EA.DataAccess.ContextC;
 using Microsoft.EntityFrameworkCore;
@@ -23,4 +24,9 @@ public class GenericRepositories<T>:IGenericRepository<T> where T : BaseEntity
     public async Task<T?> GetById(int id)=>await _dbSet.FindAsync(id);
 
     public void Update(T entity)=>_dbSet.Update(entity);
+
+    public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
+    {
+        return _dbSet.Where(predicate);
+    }
 }

@@ -19,13 +19,18 @@ public class AuthService : IAuthService
     public async Task<TokenDto?> LoginAsync(LoginDto loginDto)
     {
         var user = await _userRepo.Where(x => x.Email == loginDto.Email).FirstOrDefaultAsync();
-        if (user != null)
-        {
-            var tokenDto = _tokenService.CreateToken(user);
-            await _userService.UpdateRefreshToken(user.Id, tokenDto.RefreshToken, DateTime.Now.AddDays(7));
-            return tokenDto;
-        }
-        return null;
+        if(user==null) return null;
+
+        bool IsPasswordCorrect=BCrypt.Net.BCrypt.Verify(
+            loginDto.PassWord,
+            user.PassWord
+        );
+
+        if(!IsPasswordCorrect) return null;
+
+        var tokenDto=_tokenService.CreateToken(user);
+        await _userService.UpdateRefreshToken(user.Id,tokenDto.RefreshToken,DateTime.Now.AddDays(7));
+        return tokenDto;
     }
 
     public async Task<bool> LogoutAsync(int userId)
@@ -63,7 +68,7 @@ public class AuthService : IAuthService
             Email = registerDto.Email,
             FirstName = registerDto.FirstName,
             LastName = registerDto.LastName,
-            PassWord = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
+            PassWord = BCrypt.Net.BCrypt.HashPassword(registerDto.PassWord),
             CreatedBy=""
         };
 

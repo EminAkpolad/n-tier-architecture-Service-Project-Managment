@@ -29,11 +29,4 @@ public class AuthController:ControllerBase
         var complete=await _authService.LoginAsync(loginDto);
         return Ok(complete);
     }
-
-    [Authorize]
-    [HttpPost("me")]
-    public IActionResult me()
-    {
-        return Ok("200 dönersss");
-    }
 }
